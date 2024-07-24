@@ -1,10 +1,11 @@
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ApiController
     {
         private static readonly string[] Summaries = new[]
         {
@@ -13,7 +14,7 @@ namespace WebAPI.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(Notification notification, IHttpContextAccessor httpContextAccessor, ILogger<WeatherForecastController> logger) : base(notification, httpContextAccessor)
         {
             _logger = logger;
         }
