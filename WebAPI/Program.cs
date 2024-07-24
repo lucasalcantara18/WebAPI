@@ -28,9 +28,8 @@ if (app.Environment.IsEnvironment("Local"))
 }
 
 app.UseHttpsRedirection();
-
+app.UseExceptionMiddleware();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
