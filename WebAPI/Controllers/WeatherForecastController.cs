@@ -1,8 +1,10 @@
 using Application.Services;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ApiController

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using WebAPI.Modules.Common;
+using WebAPI.Modules.Common.Versioning;
 using WebAPI.Modules.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,10 +15,12 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
 builder.Services.AddControllers()
                     .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddVersioning();
 builder.Services.AddServices();
 builder.Services.AddContextAccessor();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.ConfigureOptions<NamedSwaggerGenOptions>();
 
 var app = builder.Build();
 
@@ -26,7 +29,14 @@ var app = builder.Build();
 if (app.Environment.IsEnvironment("Local"))
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        foreach (var description in app.DescribeApiVersions())
+        {
+            options.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+        }
+    });
 }
 
 app.UseHttpsRedirection();
