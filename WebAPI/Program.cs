@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using WebAPI.Modules.Common;
+using WebAPI.Modules.Common.FeatureFlags;
 using WebAPI.Modules.Common.Versioning;
 using WebAPI.Modules.Services;
 
@@ -16,6 +17,7 @@ builder.Services.AddControllers()
                     .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddVersioning();
+builder.Services.AddFeatureFlags(builder.Configuration);
 builder.Services.AddServices();
 builder.Services.AddContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
