@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using WebAPI.Modules.Common;
 using WebAPI.Modules.Services;
 
@@ -10,8 +11,9 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
        .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true)
        .AddJsonFile($"appsettings.Staging.json", optional: true, reloadOnChange: true);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers()
+                    .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddServices();
