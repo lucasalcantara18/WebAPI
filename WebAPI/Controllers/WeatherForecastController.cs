@@ -6,7 +6,7 @@ namespace WebAPI.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class WeatherForecastController : ApiController
     {
         private static readonly string[] Summaries = new[]
