@@ -19,6 +19,7 @@ builder.Services.AddControllers()
                     .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddVersioning();
+builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddFeatureFlags(builder.Configuration);
 builder.Services.AddMigrator(builder.Configuration);
 builder.Services.AddSQLServer(builder.Configuration);
@@ -49,6 +50,7 @@ if (app.Environment.IsEnvironment("Local"))
 app.UseDatabaseAlwaysUpToDate();
 app.UseHttpsRedirection();
 app.UseExceptionMiddleware();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
