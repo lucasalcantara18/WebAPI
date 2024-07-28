@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using WebApi.Modules.Database;
 using WebAPI.Modules.Common;
 using WebAPI.Modules.Common.FeatureFlags;
 using WebAPI.Modules.Common.Versioning;
@@ -18,6 +19,9 @@ builder.Services.AddControllers()
 
 builder.Services.AddVersioning();
 builder.Services.AddFeatureFlags(builder.Configuration);
+builder.Services.AddMigrator(builder.Configuration);
+builder.Services.AddSQLServer(builder.Configuration);
+
 builder.Services.AddServices();
 
 builder.Services.AddContextAccessor();
@@ -41,7 +45,7 @@ if (app.Environment.IsEnvironment("Local"))
         }
     });
 }
-
+app.UseDatabaseAlwaysUpToDate();
 app.UseHttpsRedirection();
 app.UseExceptionMiddleware();
 app.UseAuthorization();

@@ -6,11 +6,6 @@ namespace Domain.Enumerations
     public enum CustomFeature
     {
         /// <summary>
-        /// Exemplo
-        /// </summary>
-        Exemplo,
-
-        /// <summary>
         ///     Use Swagger.
         /// </summary>
         Swagger,
@@ -28,26 +23,6 @@ namespace Domain.Enumerations
         /// <summary>
         ///     Use Detailed log.
         /// </summary>
-        Authentication,
-
-        /// <summary>
-        ///     Use Detailed log.
-        /// </summary>
-        DetailedLog,
-
-        /// <summary>
-        ///     Use Detailed log.
-        /// </summary>
-        Accounts,
-
-        /// <summary>
-        ///     Use Redis database.
-        /// </summary>
-        Redis,
-
-        /// <summary>
-        ///     Use rabbitMq.
-        /// </summary>
-        Queue
+        DetailedLog
     }
 }
