@@ -23,7 +23,7 @@ builder.Services.AddServices();
 builder.Services.AddContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.ConfigureOptions<NamedSwaggerGenOptions>();
+builder.Services.ConfigureOptions<NamedSwaggerGenOptions>();
 
 var app = builder.Build();
 
@@ -32,15 +32,14 @@ var app = builder.Build();
 if (app.Environment.IsEnvironment("Local"))
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
-    //app.UseSwaggerUI(options =>
-    //{
-    //    foreach (var description in app.DescribeApiVersions())
-    //    {
-    //        options.SwaggerEndpoint(
-    //            $"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-    //    }
-    //});
+    app.UseSwaggerUI(options =>
+    {
+        foreach (var description in app.DescribeApiVersions())
+        {
+            options.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+        }
+    });
 }
 
 app.UseHttpsRedirection();
