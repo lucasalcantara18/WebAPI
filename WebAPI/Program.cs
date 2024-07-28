@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using WebApi.Modules.Common;
 using WebApi.Modules.Database;
 using WebAPI.Modules.Common;
 using WebAPI.Modules.Common.FeatureFlags;
@@ -21,7 +22,7 @@ builder.Services.AddVersioning();
 builder.Services.AddFeatureFlags(builder.Configuration);
 builder.Services.AddMigrator(builder.Configuration);
 builder.Services.AddSQLServer(builder.Configuration);
-
+builder.Services.AddRepositories();
 builder.Services.AddServices();
 
 builder.Services.AddContextAccessor();
