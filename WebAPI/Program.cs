@@ -5,6 +5,7 @@ using WebAPI.Modules.Common;
 using WebAPI.Modules.Common.FeatureFlags;
 using WebAPI.Modules.Common.Versioning;
 using WebAPI.Modules.Services;
+using WebAPI.Modules.UseCases;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.AddFeatureFlags(builder.Configuration);
 builder.Services.AddMigrator(builder.Configuration);
 builder.Services.AddSQLServer(builder.Configuration);
 builder.Services.AddRepositories();
+builder.Services.AddUseCases();
 builder.Services.AddServices();
 
 builder.Services.AddContextAccessor();

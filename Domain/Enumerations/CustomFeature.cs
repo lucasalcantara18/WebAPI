@@ -23,6 +23,12 @@ namespace Domain.Enumerations
         /// <summary>
         ///     Use Detailed log.
         /// </summary>
-        DetailedLog
+        DetailedLog,
+
+        /// <summary>
+        ///     modulos de clientes.
+        /// </summary>
+        Clientes,
+
     }
 }
